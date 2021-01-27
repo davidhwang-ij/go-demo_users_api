@@ -1,8 +1,8 @@
 package services
 
 import (
-	"github.com/davidhwang-ij/go-demo_users_api/domain/users"
-	"github.com/davidhwang-ij/go-demo_users_api/utils/errors"
+	"github.com/davidhwang-ij/go-demo_users_api_02/domain/users"
+	"github.com/davidhwang-ij/go-demo_users_api_02/utils/errors"
 )
 
 func CreateUser(user users.User) (*users.User, *errors.RestErr) {
@@ -16,4 +16,12 @@ func CreateUser(user users.User) (*users.User, *errors.RestErr) {
 	}
 
 	return &user, nil
+}
+
+func GetUser(userId int64) (*users.User, *errors.RestErr) {
+	result := &users.User{Id: userId}
+	if err := result.Get(); err != nil {
+		return nil, err
+	}
+	return result, nil
 }

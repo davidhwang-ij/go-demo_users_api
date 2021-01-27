@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var (
@@ -16,7 +18,7 @@ var (
 
 func init() {
 	// username:password@tcp(host)/user_schema
-	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)?charset=utf8", username, password, host, schema)
+	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", username, password, host, schema)
 
 	var err error
 	Client, err := sql.Open("mysql", dataSourceName)
