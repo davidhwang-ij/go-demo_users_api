@@ -2,6 +2,7 @@ package users
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/davidhwang-ij/go-demo_users_api/domain/users"
 	"github.com/davidhwang-ij/go-demo_users_api/services"
@@ -24,4 +25,21 @@ func Create(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, result)
+}
+
+func Get(c *gin.Context) {
+	userId, userErr := strconv.ParseInt(c.Param("user_id"), 10, 64)
+	if userErr != nil {
+		err := errors.NewBadRequestError("user id should be a number")
+		c.JSON(err.Status, err)
+	}
+
+	user, getErr := services.GetUser(userId)
+	if getErr != nil {
+		c.JSON(getErr.Status, getErr)
+		return
+	}
+
+	c.JSON(http.StatusOK, user)
+
 }
