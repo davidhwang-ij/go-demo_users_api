@@ -7,8 +7,11 @@ import (
 
 const (
 	queryInsertUser = "INSERT INTO users(first_name, last_name, email, password) VALUES (?, ?, ?, ?);"
+<<<<<<< HEAD
 	queryGetUser    = "SELECT id, first_name, last_name, email FROM users WHERE id=?;"
 	queryUpdateUser = "UPDATE users SET first_name=?, last_name=?, email=? WHERE id=?;"
+=======
+>>>>>>> 905c897ea9f3eb8a10b67bf5f3c6f1ec13ccbe5e
 )
 
 func (user *User) Get() *errors.RestErr {
